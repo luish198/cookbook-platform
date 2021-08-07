@@ -1,10 +1,9 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { useEffect, useState } from "react";
-import { AppBar, Tabs, Tab } from "@material-ui/core";
-//import TabPanel from '@material-ui/lab/TabPanel'
-import { TabPanel } from "@material-ui/lab";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Button } from 'rsuite';
+import 'rsuite/dist/styles/rsuite-default.css';
 import List from "./components/List";
 import Home from "./components/Home";
 
@@ -30,13 +29,7 @@ function App() {
 
   return (
     <div className="App">
-      <AppBar position="static">
-        <Tabs aria-label="simple tabs example">
-          <Tab label="Item One" />
-          <Tab label="Item Two" />
-          <Tab label="Item Three" />
-        </Tabs>
-      </AppBar>
+
 
       <Router>
         <Switch>
@@ -47,6 +40,7 @@ function App() {
       </Router>
 
       <List result={recipes} />
+      <Button appearance="primary">Hello World</Button>
 
       {/* <h1>Coocking - Platform by Khaled + Luis</h1>
       <Button variant="contained" color="primary">
