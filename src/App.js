@@ -10,6 +10,9 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import List from './components/List'
+
+
 
 
 
@@ -50,6 +53,8 @@ function App() {
           <Tab label="Item Three"  />
         </Tabs>
       </AppBar>
+
+      <List result={recipes} />
       
 
 
