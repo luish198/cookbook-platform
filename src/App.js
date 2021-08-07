@@ -1,65 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
-import { useEffect, useState } from 'react';
-import {AppBar, Tabs,Tab} from '@material-ui/core';
+import logo from "./logo.svg";
+import "./App.css";
+import { useEffect, useState } from "react";
+import { AppBar, Tabs, Tab } from "@material-ui/core";
 //import TabPanel from '@material-ui/lab/TabPanel'
-import { TabPanel } from '@material-ui/lab';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
-import List from './components/List'
-
-
-
-
-
+import { TabPanel } from "@material-ui/lab";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import List from "./components/List";
+import Home from "./components/Home";
 
 function App() {
-
-  const [recipes,setRecipes] = useState([])
+  const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
+    const fetching = async () => {
+      const fetchingApi = await fetch(
+        "https://cookbook-platform-api.herokuapp.com/recipes"
+      );
 
-    
-      const fetching = async () => {
+      const result = await fetchingApi.json();
 
-        const fetchingApi =  await fetch('https://cookbook-platform-api.herokuapp.com/recipes')
+      setRecipes(result);
 
-        const result = await fetchingApi.json()
+      console.log(result);
+      console.log(recipes);
+    };
 
-        setRecipes(result)
-
-        console.log(result)
-        console.log(recipes)
-
-      }
-
-      fetching()
-
-  }, [])
-
-
+    fetching();
+  }, []);
 
   return (
     <div className="App">
-
       <AppBar position="static">
-        <Tabs  aria-label="simple tabs example">
-          <Tab label="Item One"  />
-          <Tab label="Item Two"  />
-          <Tab label="Item Three"  />
+        <Tabs aria-label="simple tabs example">
+          <Tab label="Item One" />
+          <Tab label="Item Two" />
+          <Tab label="Item Three" />
         </Tabs>
       </AppBar>
 
+      <Router>
+        <Switch>
+          <Route exact path="/home">
+            <Home recipes={recipes} />
+          </Route>
+        </Switch>
+      </Router>
+
       <List result={recipes} />
-      
-
-
-
-
 
       {/* <h1>Coocking - Platform by Khaled + Luis</h1>
       <Button variant="contained" color="primary">
@@ -97,18 +84,11 @@ function App() {
         </Switch>
       </div>
     </Router> */}
-
-
-
     </div>
   );
 }
 
 export default App;
-
-function Home() {
-  return <h2>Home</h2>;
-}
 
 function About() {
   return <h2>About</h2>;
@@ -118,13 +98,12 @@ function Users() {
   return <h2>Users</h2>;
 }
 
-
 //<Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
 /*<Tab label="Item One" {...a11yProps(0)} />
           <Tab label="Item Two" {...a11yProps(1)} />
           <Tab label="Item Three" {...a11yProps(2)} />*/
 
-          // <TabPanel value={value} index={0}>
+// <TabPanel value={value} index={0}>
 
 /*<TabPanel  index={0}>
         Item One
@@ -145,8 +124,4 @@ function Users() {
       .then(response => response.json())
       .then(data => {setRecipes(data)
         console.log(recipes)
-      });*/      
-
-
-
-
+      });*/
