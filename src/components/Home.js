@@ -1,5 +1,5 @@
 import React from "react";
-import { Loader, Container, FlexboxGrid, Col } from "rsuite";
+import { Loader, Container, FlexboxGrid, Col, Divider } from "rsuite";
 import "./Home.css";
 
 export default function Home({ recipes }) {
@@ -19,8 +19,8 @@ export default function Home({ recipes }) {
             
 
             
-            <FlexboxGrid justify="space-around" style={{height : '80vh'}}>
-              <FlexboxGrid.Item componentClass={Col} colspan={24} md={9}>
+            <FlexboxGrid justify="space-around" style={{height : '80vh', padding: 100}}>
+              <FlexboxGrid.Item componentClass={Col} className='left' colspan={24} md={9}>
               <h1>{item.title}</h1>
             <img src={item.picture} />
                 
@@ -31,9 +31,12 @@ export default function Home({ recipes }) {
                 md={15}
                 smHidden
               >
-                  <p>{item.description}</p>
-            <p>{item.method}</p>
+                  <h6>{item.description}</h6>
+                  <Divider></Divider>
+            <h6>{item.method}</h6>
+            <Divider></Divider>
             <h6>{item.cooktime} min</h6>
+            <Divider></Divider>
             <h6>Level: {item.difficulty}</h6>
                 
               </FlexboxGrid.Item>
