@@ -1,16 +1,20 @@
 import React from 'react';
-import clsx from 'clsx';
+//import clsx from 'clsx';
+import { Panel, PanelGroup, Nav, Icon } from 'rsuite';
+import { FlexboxGrid, Col } from 'rsuite';
+import './list.css';
 
 
 
+export default function List({ recipes }) {
 
-
-export default function List({ result }) {
+    console.log("result in list")
+    console.log(recipes)
 
     const showRecipies = () => {
 
-        result.map((result) => {
-            console.log(result.title)
+        recipes.map((recipes) => {
+            console.log(recipes.title)
         }
 
         )
@@ -20,18 +24,61 @@ export default function List({ result }) {
 
 
 
+
+
+
     return (
-        <>
-            
-            <h1>....</h1>
+
+
+
+        recipes ? (
+            <>
+
+
+
+                {
+                    recipes.map((result) => (
+
+                        <>
 
 
 
 
-        </>
+
+                            <container className="rescon">
+                            <Panel shaded bordered bodyFill style={{ display: 'inline-block', width: 240 }}>
+                                <img src={result.picture} alt="Recipe img missing" height="240" />
+                                <Panel header={result.title} >
+                                    <p>
+                                        <small>{result.description}</small>
+                                    </p>
+                                </Panel>
+                            </Panel>
+                            </container>
+
+
+
+
+
+
+
+
+
+
+
+                        </>
+
+                    )
+                    )
+                }
+
+            </>
+        ) : (
+            <h1>Loading...</h1>
+        )
+
+
     )
-
-
 
 }
 
@@ -55,6 +102,20 @@ export default function List({ result }) {
 
 
 //<FavoriteIcon />
+
+/*<FlexboxGrid.Item componentClass={Col} colspan={6} md={6}>
+
+                                        <Panel shaded bordered bodyFill style={{ display: 'inline-block', width: 240 }}>
+                                            <img src={result.picture} alt="Recipe img missing" height="240" />
+                                            <Panel header={result.title} >
+                                                <p>
+                                                    <small>{result.description}</small>
+                                                </p>
+                                            </Panel>
+                                        </Panel>
+
+
+                                    </FlexboxGrid.Item>*/
 
 
 
