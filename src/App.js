@@ -2,7 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { Button } from 'rsuite';
+import { Nav, Icon } from 'rsuite';
 import 'rsuite/dist/styles/rsuite-default.css';
 import List from "./components/List";
 import Home from "./components/Home";
@@ -21,18 +21,30 @@ function App() {
 
       setRecipes(result);
 
-      // console.log(result);
-      // console.log(recipes);
     };
 
     fetching();
   }, []);
 
   return (
+    
     <div className="App">
+{/*-------------------------------------------------------------- Added by luis */}
 
+      <Nav>
+        
+        <Nav.Item icon={<Icon icon="home" />}>Home</Nav.Item>
+        <Nav.Item>News</Nav.Item>
+        <Nav.Item>Solutions</Nav.Item>
+        <Nav.Item>Products</Nav.Item>
+        <Nav.Item>About</Nav.Item>
+      </Nav>
+{/*-----------------------------------------------------------end of Added by luis */}
 
       <Router>
+      <Link to="/">Home</Link>
+      <Link to="/list">Recipies</Link>
+
         <Switch>
           <Route exact path="/recipe">
             <Recipe recipes={recipes} />
@@ -40,11 +52,14 @@ function App() {
           <Route exact path="/list">
             <List recipes={recipes} />
           </Route>
+
           <Route exact path="/">
             <Home recipes={recipes} />
           </Route>
+          
         </Switch>
       </Router>
+
       {/* <h1>Coocking - Platform by Khaled + Luis</h1>
       <Button variant="contained" color="primary">
         Hello World
@@ -81,7 +96,8 @@ function App() {
       </div>
     </Router> */}
     </div>
-  );
+  
+  )
 }
 
 export default App;
@@ -121,4 +137,4 @@ function Users() {
       .then(data => {setRecipes(data)
         console.log(recipes)
 
-      });*/  
+      });*/
