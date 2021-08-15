@@ -6,6 +6,7 @@ import { Nav, Icon } from 'rsuite';
 import 'rsuite/dist/styles/rsuite-default.css';
 import List from "./components/List";
 import Home from "./components/Home";
+import Recipe from "./components/Recipe";
 
 function App() {
   const [recipes, setRecipes] = useState([]);
@@ -47,12 +48,17 @@ function App() {
       <Link to="/list">Recipies</Link>
 
         <Switch>
+        <Route exact path="/recipe">
+            <Recipe recipes={recipes} />
+          </Route>
+        <Route exact path="/list">
+            <List recipes={recipes} />
+          </Route>
+
           <Route exact path="/">
             <Home recipes={recipes} />
           </Route>
-          <Route exact path="/list">
-            <List recipes={recipes} />
-          </Route>
+          
         </Switch>
       </Router>
 
