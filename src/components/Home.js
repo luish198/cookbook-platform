@@ -1,3 +1,4 @@
+  
 import React from "react";
 
 export default function Home({ recipes }) {
@@ -18,7 +19,8 @@ export default function Home({ recipes }) {
           <p>{item.description}</p>
           <p>{item.method}</p>
         </>
-      ) : (
+     
+) : (
         <h1>Loading...</h1>
       )}
     </div>
